@@ -1,0 +1,35 @@
+# dbt Project Configuration
+# This is the main configuration file for your dbt project
+
+name: 'dbt_learning'
+version: '1.0.0'
+config-version: 2
+
+# Profile determines database connection
+# For learning, we use Snowflake as the data warehouse
+profile: 'dbt_learning'
+
+# Main folders for models
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuration for models
+models:
+  dbt_learning:
+    # Staging models (first layer - data cleaning)
+    staging:
+      +materialized: view
+      +schema: staging
+
+    # Marts models (second layer - business logic)
+    marts:
+      +materialized: table
+      +schema: marts
