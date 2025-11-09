@@ -30,9 +30,9 @@ clean-targets:
 models:
   dbt_learning:
     # Staging models (first layer - data cleaning)
-    stg:
+    staging:
       +materialized: view
 
     # Marts models (second layer - business logic)
-    mart:
+    marts:
       +materialized: table
