@@ -9,6 +9,11 @@ config-version: 2
 # For learning, we use Snowflake as the data warehouse
 profile: 'dbt_learning'
 
+# Macro to handle schema naming - prevents double prefixing
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['dbt_learning', 'dbt_utils']
+
 # Main folders for models
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -27,9 +32,7 @@ models:
     # Staging models (first layer - data cleaning)
     staging:
       +materialized: view
-      +schema: staging
 
     # Marts models (second layer - business logic)
     marts:
       +materialized: table
-      +schema: marts
