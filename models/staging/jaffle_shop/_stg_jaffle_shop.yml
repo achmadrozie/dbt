@@ -24,8 +24,9 @@ models:
         description: Foreign key to stg_customers.customer_id
         data_tests:
           - relationships:
-              field: customer_id
-              to: ref('stg_jaffle_shop__customers')
+              arguments:
+                field: customer_id
+                to: ref('stg_jaffle_shop__customers')
       - name: order_status
         description: "{{ doc('order_status') }}"
         data_tests:
