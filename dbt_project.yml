@@ -31,8 +31,10 @@ models:
   dbt_learning:
     # Staging models (first layer - data cleaning)
     staging:
+      +schema: 'staging'
       +materialized: view
 
     # Marts models (second layer - business logic)
-    marts:
+    mart:
+      +schema: 'mart'
       +materialized: table
